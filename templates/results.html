@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Results | NFL Defensive Formations</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="results-container">
+            <h1 class="text-center mb-4">Quiz Results</h1>
+            
+            <div class="score-container text-center mb-5">
+                <h2>Your Score: {{ correct_count }}/{{ total }}</h2>
+                <div class="progress mt-3">
+                    <div class="progress-bar {% if score >= 80 %}bg-success{% elif score >= 60 %}bg-warning{% else %}bg-danger{% endif %}" 
+                         role="progressbar" style="width: {{ score }}%;" 
+                         aria-valuenow="{{ score }}" aria-valuemin="0" aria-valuemax="100">
+                        {{ score|round|int }}%
+                    </div>
+                </div>
+            </div>
+            
+            <div class="results-details">
+                <h3 class="mb-4">Question Summary:</h3>
+                
+                <div class="accordion" id="resultsAccordion">
+                    {% for result in results %}
+                    <div class="accordion-item">
+                        <h2 class="accordion-header" id="heading{{ loop.index }}">
+                            <button class="accordion-button {% if not result.is_correct %}text-danger{% else %}text-success{% endif %} {% if not loop.first %}collapsed{% endif %}" 
+                                    type="button" data-bs-toggle="collapse" 
+                                    data-bs-target="#collapse{{ loop.index }}" 
+                                    aria-expanded="{{ 'true' if loop.first else 'false' }}" 
+                                    aria-controls="collapse{{ loop.index }}">
+                                Question {{ loop.index }}: {% if result.is_correct %}Correct{% else %}Incorrect{% endif %}
+                            </button>
+                        </h2>
+                        <div id="collapse{{ loop.index }}" 
+                             class="accordion-collapse collapse {% if loop.first %}show{% endif %}" 
+                             aria-labelledby="heading{{ loop.index }}" 
+                             data-bs-parent="#resultsAccordion">
+                            <div class="accordion-body">
+                                <p><strong>Question:</strong> {{ result.question }}</p>
+                                <p><strong>Your answer:</strong> {{ result.user_answer }}</p>
+                                <p><strong>Correct answer:</strong> {{ result.correct_answer }}</p>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            
+            <div class="text-center mt-5">
+                <a href="/learn/1" class="btn btn-secondary">Review Lessons</a>
+                <a href="/quiz/1" class="btn btn-primary">Retake Quiz</a>
+                <a href="/" class="btn btn-outline-primary">Back to Home</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script>
+        // Custom filter for Jinja2
+        function ternary(value, trueVal, falseVal) {
+            return value ? trueVal : falseVal;
+        }
+    </script>
+</body>
+</html>
