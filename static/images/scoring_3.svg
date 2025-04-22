@@ -1,0 +1,122 @@
+<svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @keyframes slideIn {
+      0% { transform: translateY(-500px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    
+    @keyframes ballMoveConversion {
+      0% { transform: translate(0, 0); }
+      50% { transform: translate(40px, 0); }
+      60% { transform: translate(55px, 0); }
+      70% { transform: translate(65px, 0); }
+      100% { transform: translate(65px, 0); }
+    }
+    
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      70% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    
+    @keyframes endzoneGlow {
+      0% { fill-opacity: 0.3; }
+      50% { fill-opacity: 0.7; }
+      100% { fill-opacity: 0.3; }
+    }
+    
+    .card {
+      animation: slideIn 1s ease-out forwards;
+    }
+    
+    .title {
+      font-family: Arial, sans-serif;
+      font-size: 28px;
+      font-weight: bold;
+      fill: white;
+      text-anchor: middle;
+    }
+    
+    .points {
+      font-family: Arial, sans-serif;
+      font-size: 48px;
+      font-weight: bold;
+      fill: white;
+      text-anchor: middle;
+    }
+    
+    .description {
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      font-weight: bold;
+      fill: black;
+      text-anchor: middle;
+    }
+    
+    .player-group {
+      animation: ballMoveConversion 4s ease-in-out 1s infinite;
+    }
+    
+    .endzone-highlight {
+      animation: endzoneGlow 4s ease-in-out 3s infinite;
+    }
+    
+    .score-text {
+      animation: fadeIn 4s ease-in-out 3s forwards;
+      opacity: 0;
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      fill: #6366F1;
+      text-anchor: middle;
+    }
+  </style>
+  
+  <!-- Card background -->
+  <g class="card">
+    <rect x="50" y="30" width="400" height="340" rx="15" fill="#6366F1"/>
+    <text x="250" y="75" class="title">TWO-POINT CONVERSION</text>
+    <text x="250" y="130" class="points">2 POINTS</text>
+    
+    <!-- Football field -->
+    <rect x="75" y="170" width="350" height="120" fill="#E5E7EB" stroke="#fff" stroke-width="1"/>
+    
+    <!-- Yard lines -->
+    <line x1="125" y1="170" x2="125" y2="290" stroke="#fff" stroke-width="1"/>
+    <line x1="175" y1="170" x2="175" y2="290" stroke="#fff" stroke-width="1"/>
+    <line x1="225" y1="170" x2="225" y2="290" stroke="#fff" stroke-width="1"/>
+    <line x1="275" y1="170" x2="275" y2="290" stroke="#fff" stroke-width="1"/>
+    <line x1="325" y1="170" x2="325" y2="290" stroke="#fff" stroke-width="1"/>
+    <line x1="375" y1="170" x2="375" y2="290" stroke="#fff" stroke-width="1"/>
+    
+    <!-- End zones -->
+    <rect x="75" y="170" width="50" height="120" fill="#F59E0B" stroke="#fff" stroke-width="0"/>
+    <rect x="375" y="170" width="50" height="120" fill="#F59E0B" stroke="#fff" stroke-width="0"/>
+    
+    <!-- Highlight the target end zone (right side) -->
+    <rect class="endzone-highlight" x="375" y="170" width="50" height="120" fill="#6366F1" stroke="none" fill-opacity="0.3"/>
+    
+    <!-- 2-yard line -->
+    <line x1="335" y1="170" x2="335" y2="290" stroke="#fff" stroke-width="3" stroke-dasharray="5,5"/>
+    <text x="335" y="160" font-family="Arial, sans-serif" font-size="10" fill="#000" text-anchor="middle">2-YD</text>
+    
+    <!-- Player with football running from 2-yard line to endzone -->
+    <g class="player-group">
+      <ellipse cx="335" cy="230" rx="12" ry="12" fill="#0284c7" stroke="#000" stroke-width="1"/> <!-- Helmet -->
+      <rect x="325" y="240" width="20" height="25" fill="#0284c7" stroke="#000" stroke-width="1" rx="5"/> <!-- Body -->
+      <line x1="325" y1="245" x2="315" y2="255" stroke="#0284c7" stroke-width="6" stroke-linecap="round"/> <!-- Left arm -->
+      <line x1="345" y1="245" x2="355" y2="255" stroke="#0284c7" stroke-width="6" stroke-linecap="round"/> <!-- Right arm -->
+      <line x1="330" y1="265" x2="320" y2="280" stroke="#0284c7" stroke-width="7" stroke-linecap="round"/> <!-- Left leg -->
+      <line x1="340" y1="265" x2="350" y2="280" stroke="#0284c7" stroke-width="7" stroke-linecap="round"/> <!-- Right leg -->
+      
+      <!-- Football -->
+      <ellipse cx="355" cy="250" rx="10" ry="6" fill="#7C2D12" stroke="#000" stroke-width="1" transform="rotate(30, 355, 250)"/>
+      <line x1="355" y1="250" x2="355" y2="250" stroke="#fff" stroke-width="3" transform="rotate(30, 355, 250)"/>
+    </g>
+    
+    <!-- Conversion text appears after animation -->
+    <text x="400" y="230" class="score-text">CONVERSION!</text>
+    
+    <text x="250" y="335" class="description">Score from the 2-yard line after a touchdown</text>
+  </g>
+</svg>

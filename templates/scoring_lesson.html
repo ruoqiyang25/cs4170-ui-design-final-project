@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ lesson.title }} | NFL Defensive Formations</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    <style>
+        .scoring-animation-container {
+            width: 100%;
+            height: 350px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            background-color: #f8f9fa;
+            transition: transform 0.3s ease;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .scoring-animation-container:hover {
+            transform: scale(1.02);
+        }
+        
+        .scoring-animation-container object {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        
+        .scoring-methods-description {
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lesson-container">
+            <h1 class="text-center mb-4">{{ lesson.title }}</h1>
+            
+            <div class="row">
+                <div class="col-12">
+                    <div class="scoring-methods-description">
+                        <p>{{ lesson.content }}</p>
+                    </div>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="scoring-animation-container">
+                        <object type="image/svg+xml" data="{{ url_for('static', filename='images/scoring_1.svg') }}">
+                            <img src="{{ url_for('static', filename='images/scoring_1_fallback.jpg') }}" alt="Touchdown" class="img-fluid">
+                        </object>
+                    </div>
+                    <h3 class="text-center">Touchdown</h3>
+                    <p class="text-center">6 points - Cross the opponent's goal line with the ball</p>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="scoring-animation-container">
+                        <object type="image/svg+xml" data="{{ url_for('static', filename='images/scoring_2.svg') }}">
+                            <img src="{{ url_for('static', filename='images/scoring_2_fallback.jpg') }}" alt="Field Goal" class="img-fluid">
+                        </object>
+                    </div>
+                    <h3 class="text-center">Field Goal</h3>
+                    <p class="text-center">3 points - Kick the ball through the goalposts</p>
+                </div>
+                
+                <div class="col-md-4">
+                    <div class="scoring-animation-container">
+                        <object type="image/svg+xml" data="{{ url_for('static', filename='images/scoring_3.svg') }}">
+                            <img src="{{ url_for('static', filename='images/scoring_3_fallback.jpg') }}" alt="Two-Point Conversion" class="img-fluid">
+                        </object>
+                    </div>
+                    <h3 class="text-center">Two-Point Conversion</h3>
+                    <p class="text-center">2 points - Score from the 2-yard line after a touchdown</p>
+                </div>
+            </div>
+            
+            <div class="navigation-buttons text-center mt-4">
+                <a href="/learn/{{ lesson.id - 1 }}" class="btn btn-secondary">Previous</a>
+                <a href="/learn/{{ lesson.id + 1 }}" class="btn btn-primary">Next</a>
+            </div>
+            
+            <div class="progress mt-4">
+                <div class="progress-bar" role="progressbar" 
+                     style="width: {{ (lesson.id / 7) * 100 }}%;" 
+                     aria-valuenow="{{ lesson.id }}" aria-valuemin="0" aria-valuemax="7">
+                    Lesson {{ lesson.id }} of 7
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/main.js"></script>
+    <script>
+        $(document).ready(function() {
+            $.ajax({
+                url: '/api/user_data',
+                type: 'GET',
+                success: function(data) {
+                    console.log('Viewing lesson ' + {{ lesson.id }});
+                }
+            });
+        });
+    </script>
+</body>
+</html>

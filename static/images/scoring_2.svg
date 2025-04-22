@@ -1,0 +1,118 @@
+<svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @keyframes slideIn {
+      0% { transform: translateY(-500px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    
+    @keyframes ballMoveFieldGoal {
+      0% { transform: translate(0, 0); }
+      60% { transform: translate(140px, -80px); }
+      70% { transform: translate(170px, -100px); }
+      100% { transform: translate(170px, -100px); }
+    }
+    
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      60% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    
+    @keyframes goalPostGlow {
+      0% { stroke: #000; }
+      70% { stroke: #FDE68A; }
+      100% { stroke: #000; }
+    }
+    
+    .card {
+      animation: slideIn 1s ease-out forwards;
+    }
+    
+    .title {
+      font-family: Arial, sans-serif;
+      font-size: 28px;
+      font-weight: bold;
+      fill: white;
+      text-anchor: middle;
+    }
+    
+    .points {
+      font-family: Arial, sans-serif;
+      font-size: 48px;
+      font-weight: bold;
+      fill: white;
+      text-anchor: middle;
+    }
+    
+    .description {
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      font-weight: bold;
+      fill: black;
+      text-anchor: middle;
+    }
+    
+    .fieldgoal-ball {
+      animation: ballMoveFieldGoal 4s ease-in-out 1s infinite;
+    }
+    
+    .dotted-path {
+      stroke-dasharray: 5,5;
+      animation: fadeIn 4s ease-in-out 1s forwards;
+      opacity: 0;
+    }
+    
+    .goalpost-vertical {
+      animation: goalPostGlow 4s ease-in-out 3s infinite;
+    }
+    
+    .goalpost-crossbar {
+      animation: goalPostGlow 4s ease-in-out 3s infinite;
+    }
+    
+    .score-text {
+      animation: fadeIn 4s ease-in-out 3s forwards;
+      opacity: 0;
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      fill: #F59E0B;
+      text-anchor: middle;
+    }
+  </style>
+  
+  <!-- Card background -->
+  <g class="card">
+    <rect x="50" y="30" width="400" height="340" rx="15" fill="#F59E0B"/>
+    <text x="250" y="75" class="title">FIELD GOAL</text>
+    <text x="250" y="130" class="points">3 POINTS</text>
+    
+    <!-- Football field -->
+    <rect x="75" y="170" width="350" height="120" fill="#E5E7EB" stroke="#fff" stroke-width="1"/>
+    
+    <!-- Yard lines -->
+    <line x1="125" y1="170" x2="125" y2="290" stroke="#fff" stroke-width="1"/>
+    <line x1="175" y1="170" x2="175" y2="290" stroke="#fff" stroke-width="1"/>
+    <line x1="225" y1="170" x2="225" y2="290" stroke="#fff" stroke-width="1"/>
+    <line x1="275" y1="170" x2="275" y2="290" stroke="#fff" stroke-width="1"/>
+    <line x1="325" y1="170" x2="325" y2="290" stroke="#fff" stroke-width="1"/>
+    <line x1="375" y1="170" x2="375" y2="290" stroke="#fff" stroke-width="1"/>
+    
+    <!-- NFL-style Goal Post -->
+    <line class="goalpost-vertical" x1="395" y1="290" x2="395" y2="170" stroke="#000" stroke-width="4"/>
+    <line class="goalpost-crossbar" x1="375" y1="170" x2="415" y2="170" stroke="#000" stroke-width="4"/>
+    <line class="goalpost-vertical" x1="375" y1="170" x2="375" y2="110" stroke="#000" stroke-width="4"/>
+    <line class="goalpost-vertical" x1="415" y1="170" x2="415" y2="110" stroke="#000" stroke-width="4"/>
+    
+    <!-- Ball and trajectory -->
+    <ellipse class="fieldgoal-ball" cx="225" cy="250" rx="16" ry="10" fill="#7C2D12" stroke="#000" stroke-width="1" transform="rotate(-30, 225, 250)"/>
+    <line class="fieldgoal-ball" x1="225" y1="250" x2="225" y2="250" stroke="#fff" stroke-width="6" transform="rotate(60, 225, 250)"/>
+    
+    <path class="dotted-path" d="M225 250 Q 310 180 395 150" stroke="#7C2D12" stroke-width="2" fill="none"/>
+    
+    <!-- Field Goal text appears after animation -->
+    <text x="395" y="140" class="score-text">GOOD!</text>
+    
+    <text x="250" y="335" class="description">Kick ball through uprights</text>
+  </g>
+</svg>

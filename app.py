@@ -35,6 +35,11 @@ def learn(lesson_id):
     
     next_page = f'/learn/{lesson_id + 1}' if lesson_id < len(content_data['lessons']) else '/quiz/1'
     
+    # Check if this is lesson 3 (scoring methods)
+    if lesson_id == 3:
+        return render_template('scoring_lesson.html', lesson=lesson, lesson_id=lesson_id, next_page=next_page)
+    
+    # Default template for other lessons
     return render_template('learn.html', lesson=lesson, lesson_id=lesson_id, next_page=next_page)
 
 @app.route('/quiz/<int:question_id>', methods=['GET', 'POST'])
@@ -111,8 +116,24 @@ def congratulations():
                           correct_count=correct_count, 
                           total=len(content_data['quiz']))
 
-@app.route('/api/user_data')
+@app.route('/api/user_data', methods=['GET', 'POST'])
 def get_user_data():
+    if request.method == 'POST':
+        # Handle the POST request for tracking lesson views
+        user_data = session.get('user_data', {})
+        action = request.form.get('action')
+        
+        if action == 'view_lesson':
+            lesson_id = request.form.get('lesson_id')
+            if lesson_id:
+                # Record that the user viewed this lesson
+                # You can store additional data like timestamp if needed
+                user_data['last_viewed_lesson'] = lesson_id
+                session['user_data'] = user_data
+        
+        return jsonify({'status': 'success'})
+    
+    # For GET requests, return the user data
     return jsonify(session.get('user_data', {}))
 
 if __name__ == '__main__':

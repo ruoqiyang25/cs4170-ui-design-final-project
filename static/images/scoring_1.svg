@@ -1,0 +1,108 @@
+<svg viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @keyframes slideIn {
+      0% { transform: translateY(-500px); opacity: 0; }
+      100% { transform: translateY(0); opacity: 1; }
+    }
+    
+    @keyframes ballMoveTouchdown {
+      0% { transform: translateX(-180px); }
+      70% { transform: translateX(60px); }
+      75% { transform: translateX(60px); }
+      100% { transform: translateX(60px); }
+    }
+    
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      50% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    
+    @keyframes glow {
+      0% { fill-opacity: 0.3; }
+      50% { fill-opacity: 0.8; }
+      100% { fill-opacity: 0.3; }
+    }
+    
+    .card {
+      animation: slideIn 1s ease-out forwards;
+    }
+    
+    .title {
+      font-family: Arial, sans-serif;
+      font-size: 28px;
+      font-weight: bold;
+      fill: white;
+      text-anchor: middle;
+    }
+    
+    .points {
+      font-family: Arial, sans-serif;
+      font-size: 48px;
+      font-weight: bold;
+      fill: white;
+      text-anchor: middle;
+    }
+    
+    .description {
+      font-family: Arial, sans-serif;
+      font-size: 18px;
+      font-weight: bold;
+      fill: black;
+      text-anchor: middle;
+    }
+    
+    .touchdown-ball {
+      animation: ballMoveTouchdown 4s ease-in-out 1s infinite;
+    }
+    
+    .endzone-glow {
+      animation: glow 2s ease-in-out 3s infinite;
+      fill-opacity: 0.3;
+    }
+    
+    .score-text {
+      animation: fadeIn 4s ease-in-out 3s forwards;
+      opacity: 0;
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      font-weight: bold;
+      fill: #10B981;
+      text-anchor: middle;
+    }
+  </style>
+  
+  <!-- Card background -->
+  <g class="card">
+    <rect x="50" y="30" width="400" height="340" rx="15" fill="#10B981"/>
+    <text x="250" y="75" class="title">TOUCHDOWN</text>
+    <text x="250" y="130" class="points">6 POINTS</text>
+    
+    <!-- Football field -->
+    <rect x="75" y="170" width="350" height="120" fill="#E5E7EB" stroke="#fff" stroke-width="1"/>
+    
+    <!-- Yard lines -->
+    <line x1="125" y1="170" x2="125" y2="290" stroke="#fff" stroke-width="1"/>
+    <line x1="175" y1="170" x2="175" y2="290" stroke="#fff" stroke-width="1"/>
+    <line x1="225" y1="170" x2="225" y2="290" stroke="#fff" stroke-width="1"/>
+    <line x1="275" y1="170" x2="275" y2="290" stroke="#fff" stroke-width="1"/>
+    <line x1="325" y1="170" x2="325" y2="290" stroke="#fff" stroke-width="1"/>
+    <line x1="375" y1="170" x2="375" y2="290" stroke="#fff" stroke-width="1"/>
+    
+    <!-- End zones -->
+    <rect x="75" y="170" width="50" height="120" fill="#F59E0B" stroke="#fff" stroke-width="0"/>
+    <rect x="375" y="170" width="50" height="120" fill="#F59E0B" stroke="#fff" stroke-width="0"/>
+    
+    <!-- Goal line highlight (for the right end zone) -->
+    <rect class="endzone-glow" x="375" y="170" width="10" height="120" fill="#FF0000" stroke="none"/>
+    
+    <!-- Football -->
+    <ellipse class="touchdown-ball" cx="300" cy="230" rx="16" ry="10" fill="#7C2D12" stroke="#000" stroke-width="1"/>
+    <line class="touchdown-ball" x1="300" y1="230" x2="300" y2="230" stroke="#fff" stroke-width="6" transform="rotate(30, 300, 230)"/>
+    
+    <!-- Touchdown text appears after animation -->
+    <text x="400" y="230" class="score-text">TOUCHDOWN!</text>
+    
+    <text x="250" y="335" class="description">Cross goal line with ball</text>
+  </g>
+</svg>

@@ -1,0 +1,109 @@
+<svg viewBox="0 0 800 500" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @keyframes fadeIn {
+      0% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+    
+    @keyframes movePlayer {
+      0% { transform: translateX(-200px); }
+      100% { transform: translateX(200px); }
+    }
+    
+    .title { 
+      animation: fadeIn 2s ease-out;
+    }
+    
+    .player-group {
+      animation: movePlayer 10s infinite alternate ease-in-out;
+    }
+    
+    .description {
+      animation: fadeIn 3s ease-out;
+    }
+  </style>
+  
+  <!-- Title -->
+  <g class="title">
+    <text x="400" y="40" font-family="Arial, sans-serif" font-size="36" font-weight="bold" text-anchor="middle">AMERICAN FOOTBALL</text>
+    <text x="400" y="90" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle">THE GAME</text>
+  </g>
+  
+  <!-- Field background -->
+  <rect x="100" y="150" width="600" height="200" fill="#4CAF50" stroke="#000" stroke-width="2"/>
+  
+  <!-- End zones -->
+  <rect x="100" y="150" width="60" height="200" fill="#3e7b6b" stroke="#000" stroke-width="1"/>
+  <rect x="640" y="150" width="60" height="200" fill="#996633" stroke="#000" stroke-width="1"/>
+  
+  <!-- Field lines -->
+  <line x1="160" y1="150" x2="160" y2="350" stroke="#fff" stroke-width="2"/>
+  <line x1="220" y1="150" x2="220" y2="350" stroke="#fff" stroke-width="2"/>
+  <line x1="280" y1="150" x2="280" y2="350" stroke="#fff" stroke-width="2"/>
+  <line x1="340" y1="150" x2="340" y2="350" stroke="#fff" stroke-width="2"/>
+  <line x1="400" y1="150" x2="400" y2="350" stroke="#fff" stroke-width="2"/>
+  <line x1="460" y1="150" x2="460" y2="350" stroke="#fff" stroke-width="2"/>
+  <line x1="520" y1="150" x2="520" y2="350" stroke="#fff" stroke-width="2"/>
+  <line x1="580" y1="150" x2="580" y2="350" stroke="#fff" stroke-width="2"/>
+  <line x1="640" y1="150" x2="640" y2="350" stroke="#fff" stroke-width="2"/>
+  
+  <!-- Player and football with animation - SCALED DOWN 40% -->
+  <g class="player-group" transform="translate(400, 250) scale(0.6) translate(-385, -280)">
+    <!-- More detailed NFL player -->
+    <!-- Helmet -->
+    <ellipse cx="386" cy="243" rx="13" ry="12" fill="#0033a0" stroke="#000" stroke-width="1"/>
+    <path d="M379,243 C379,243 377,238 383,235 C389,232 394,235 394,243" fill="#0033a0" stroke="#000" stroke-width="1"/>
+    <rect x="378" y="240" width="16" height="5" fill="#0033a0" stroke="#000" stroke-width="0.5"/>
+    <line x1="380" y1="242" x2="392" y2="242" stroke="#B3995D" stroke-width="2"/> <!-- Facemask -->
+    <line x1="380" y1="244" x2="392" y2="244" stroke="#B3995D" stroke-width="2"/> <!-- Facemask -->
+    <line x1="380" y1="246" x2="392" y2="246" stroke="#B3995D" stroke-width="2"/> <!-- Facemask -->
+    
+    <!-- Shoulder pads -->
+    <ellipse cx="378" cy="261" rx="14" ry="8" fill="#0033a0" stroke="#000" stroke-width="1" transform="rotate(-10, 378, 261)"/>
+    <ellipse cx="394" cy="261" rx="14" ry="8" fill="#0033a0" stroke="#000" stroke-width="1" transform="rotate(10, 394, 261)"/>
+    
+    <!-- Jersey -->
+    <path d="M377,263 L375,290 L395,290 L393,263" fill="#0033a0" stroke="#000" stroke-width="1"/>
+    <text x="385" y="280" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="#fff" text-anchor="middle">12</text>
+    
+    <!-- Arms with padding -->
+    <path d="M373,265 C370,268 366,275 363,280" stroke="#0033a0" stroke-width="8" stroke-linecap="round"/>
+    <path d="M397,265 C400,270 407,272 412,274" stroke="#0033a0" stroke-width="8" stroke-linecap="round"/>
+    <ellipse cx="363" cy="280" rx="5" ry="3" fill="#fff" stroke="#000" stroke-width="0.5" transform="rotate(-10, 363, 280)"/> <!-- Hand -->
+    
+    <!-- Football in hand -->
+    <ellipse cx="417" cy="274" rx="15" ry="8" fill="#8B4513" stroke="#000" stroke-width="1" transform="rotate(30, 417, 274)"/>
+    <ellipse cx="417" cy="274" rx="13" ry="6" fill="#6b3000" stroke="none" transform="rotate(30, 417, 274)"/>
+    <line x1="410" y1="270" x2="424" y2="278" stroke="#fff" stroke-width="1" transform="rotate(30, 417, 274)"/>
+    
+    <!-- Pants -->
+    <path d="M375,290 L372,315 L380,315 L385,290" fill="#fff" stroke="#000" stroke-width="1"/>
+    <path d="M385,290 L390,315 L398,315 L395,290" fill="#fff" stroke="#000" stroke-width="1"/>
+    <path d="M375,290 L395,290" stroke="#000" stroke-width="1"/>
+    
+    <!-- Legs with padding -->
+    <path d="M376,315 C376,320 374,325 372,330" stroke="#0033a0" stroke-width="7" stroke-linecap="round"/>
+    <path d="M394,315 C394,320 396,327 398,333" stroke="#0033a0" stroke-width="7" stroke-linecap="round"/>
+    
+    <!-- Cleats -->
+    <path d="M368,332 L372,330 L376,332 L377,335 L367,335 Z" fill="#000"/>
+    <path d="M394,335 L398,333 L402,335 L403,338 L393,338 Z" fill="#000"/>
+  </g>
+  
+  <!-- End zone labels - vertical static text -->
+  <text x="130" y="250" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#fff" text-anchor="middle" transform="rotate(-90, 130, 250)">END ZONE</text>
+  <text x="670" y="250" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#fff" text-anchor="middle" transform="rotate(90, 670, 250)">END ZONE</text>
+  
+  <!-- Goal posts -->
+  <line x1="100" y1="250" x2="85" y2="250" stroke="#ff0" stroke-width="4"/>
+  <line x1="85" y1="220" x2="85" y2="280" stroke="#ff0" stroke-width="4"/>
+  
+  <line x1="700" y1="250" x2="715" y2="250" stroke="#ff0" stroke-width="4"/>
+  <line x1="715" y1="220" x2="715" y2="280" stroke="#ff0" stroke-width="4"/>
+  
+  <!-- Description text with animation -->
+  <g class="description">
+    <text x="400" y="400" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle">Two teams compete to score points by</text>
+    <text x="400" y="430" font-family="Arial, sans-serif" font-size="20" font-weight="bold" text-anchor="middle">moving the ball to the opponent's end zone</text>
+  </g>
+</svg>
