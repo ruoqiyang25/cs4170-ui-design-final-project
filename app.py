@@ -35,8 +35,8 @@ def learn(lesson_id):
     
     next_page = f'/learn/{lesson_id + 1}' if lesson_id < len(content_data['lessons']) else '/quiz/1'
     
-    # Check if this is lesson 3 (scoring methods)
-    if lesson_id == 3:
+    # Check if this is the scoring methods lesson
+    if lesson_id == 4:  # Updated from 3 to 4 since we added a new lesson
         return render_template('scoring_lesson.html', lesson=lesson, lesson_id=lesson_id, next_page=next_page)
     
     # Default template for other lessons

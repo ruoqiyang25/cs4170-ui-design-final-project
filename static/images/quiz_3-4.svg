@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400">
+  <!-- Field -->
+  <rect x="0" y="0" width="1000" height="300" fill="#5cd65c"/>
+
+  <!-- Yard lines -->
+  <g stroke="#ffffff" stroke-width="2" stroke-opacity="0.5">
+    <line x1="100" y1="0"   x2="100"  y2="300"/>
+    <line x1="200" y1="0"   x2="200"  y2="300"/>
+    <line x1="300" y1="0"   x2="300"  y2="300"/>
+    <line x1="400" y1="0"   x2="400"  y2="300"/>
+    <line x1="500" y1="0"   x2="500"  y2="300"/>
+    <line x1="600" y1="0"   x2="600"  y2="300"/>
+    <line x1="700" y1="0"   x2="700"  y2="300"/>
+    <line x1="800" y1="0"   x2="800"  y2="300"/>
+    <line x1="900" y1="0"   x2="900"  y2="300"/>
+  </g>
+
+  <!-- Line of Scrimmage -->
+  <line x1="0" y1="150" x2="1000" y2="150"
+        stroke="#0000FF" stroke-width="4" stroke-dasharray="10,5"/>
+  <text x="980" y="170" fill="#0066cc" font-family="Arial"
+        font-size="16" font-weight="bold" text-anchor="end">LOS</text>
+
+  <!-- Defensive Line (3) -->
+  <circle cx="375" cy="125" r="25" fill="#ff6b6b" stroke="#000" stroke-width="2"/>
+  <text x="375" y="131" fill="white" font-family="Arial"
+        font-size="14" font-weight="bold" text-anchor="middle">DE</text>
+  <circle cx="500" cy="125" r="25" fill="#ff6b6b" stroke="#000" stroke-width="2"/>
+  <text x="500" y="131" fill="white" font-family="Arial"
+        font-size="14" font-weight="bold" text-anchor="middle">NT</text>
+  <circle cx="625" cy="125" r="25" fill="#ff6b6b" stroke="#000" stroke-width="2"/>
+  <text x="625" y="131" fill="white" font-family="Arial"
+        font-size="14" font-weight="bold" text-anchor="middle">DE</text>
+
+  <!-- Linebackers (4) -->
+  <circle cx="350" cy="100" r="25" fill="#6b9fff" stroke="#000" stroke-width="2"/>
+  <text x="350" y="106" fill="white" font-family="Arial"
+        font-size="14" font-weight="bold" text-anchor="middle">OLB</text>
+  <circle cx="450" cy="100" r="25" fill="#6b9fff" stroke="#000" stroke-width="2"/>
+  <text x="450" y="106" fill="white" font-family="Arial"
+        font-size="14" font-weight="bold" text-anchor="middle">ILB</text>
+  <circle cx="550" cy="100" r="25" fill="#6b9fff" stroke="#000" stroke-width="2"/>
+  <text x="550" y="106" fill="white" font-family="Arial"
+        font-size="14" font-weight="bold" text-anchor="middle">ILB</text>
+  <circle cx="650" cy="100" r="25" fill="#6b9fff" stroke="#000" stroke-width="2"/>
+  <text x="650" y="106" fill="white" font-family="Arial"
+        font-size="14" font-weight="bold" text-anchor="middle">OLB</text>
+
+  <!-- Defensive Backs (4) -->
+  <circle cx="300" cy="  50"  r="25" fill="#5cd65c" stroke="#000" stroke-width="2"/>
+  <text x="300" y="  56" fill="white" font-family="Arial"
+        font-size="14" font-weight="bold" text-anchor="middle">CB</text>
+  <circle cx="425" cy="  50"  r="25" fill="#5cd65c" stroke="#000" stroke-width="2"/>
+  <text x="425" y="  56" fill="white" font-family="Arial"
+        font-size="14" font-weight="bold" text-anchor="middle">SS</text>
+  <circle cx="575" cy="  50"  r="25" fill="#5cd65c" stroke="#000" stroke-width="2"/>
+  <text x="575" y="  56" fill="white" font-family="Arial"
+        font-size="14" font-weight="bold" text-anchor="middle">FS</text>
+  <circle cx="700" cy="  50"  r="25" fill="#5cd65c" stroke="#000" stroke-width="2"/>
+  <text x="700" y="  56" fill="white" font-family="Arial"
+        font-size="14" font-weight="bold" text-anchor="middle">CB</text>
+</svg>

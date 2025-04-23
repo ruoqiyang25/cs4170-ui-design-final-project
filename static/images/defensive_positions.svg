@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 400" style="background-color: #f8f9fa; max-height: 400px;">
+  <!-- Field Background -->
+  <rect x="0" y="0" width="1000" height="300" fill="#5cd65c" />
+  
+  <!-- Vertical Lines -->
+  <g stroke="#ffffff" stroke-width="2" stroke-opacity="0.5">
+    <line x1="100" y1="0" x2="100" y2="300" />
+    <line x1="200" y1="0" x2="200" y2="300" />
+    <line x1="300" y1="0" x2="300" y2="300" />
+    <line x1="400" y1="0" x2="400" y2="300" />
+    <line x1="500" y1="0" x2="500" y2="300" />
+    <line x1="600" y1="0" x2="600" y2="300" />
+    <line x1="700" y1="0" x2="700" y2="300" />
+    <line x1="800" y1="0" x2="800" y2="300" />
+    <line x1="900" y1="0" x2="900" y2="300" />
+  </g>
+  
+  <!-- Horizontal Lines -->
+  <g stroke="#ffffff" stroke-width="2" stroke-opacity="0.5">
+    <line x1="0" y1="75" x2="1000" y2="75" />
+    <line x1="0" y1="150" x2="1000" y2="150" />
+    <line x1="0" y1="225" x2="1000" y2="225" />
+  </g>
+  
+  <!-- Line of Scrimmage -->
+  <line x1="0" y1="150" x2="1000" y2="150" stroke="#00a0ff" stroke-width="4" stroke-dasharray="10,5" />
+  <text x="980" y="170" fill="#0066cc" font-family="Arial" font-weight="bold" font-size="16" text-anchor="middle">LOS</text>
+  
+  <!-- Defensive Line (Red) – now 4 players -->
+  <circle cx="360" cy="125" r="25" fill="#ff6b6b" stroke="black" stroke-width="3" />
+  <text x="360" y="131" fill="white" font-family="Arial" font-weight="bold" font-size="18" text-anchor="middle">DE</text>
+  <circle cx="450" cy="125" r="25" fill="#ff6b6b" stroke="black" stroke-width="3" />
+  <text x="450" y="131" fill="white" font-family="Arial" font-weight="bold" font-size="18" text-anchor="middle">DT</text>
+  <circle cx="550" cy="125" r="25" fill="#ff6b6b" stroke="black" stroke-width="3" />
+  <text x="550" y="131" fill="white" font-family="Arial" font-weight="bold" font-size="18" text-anchor="middle">DT</text>
+  <circle cx="650" cy="125" r="25" fill="#ff6b6b" stroke="black" stroke-width="3" />
+  <text x="650" y="131" fill="white" font-family="Arial" font-weight="bold" font-size="18" text-anchor="middle">DE</text>
+  
+  <!-- Offensive Line placeholders (Gray) -->
+  <circle cx="360" cy="175" r="20" fill="#999999" />
+  <circle cx="450" cy="175" r="20" fill="#999999" />
+  <circle cx="550" cy="175" r="20" fill="#999999" />
+  <circle cx="650" cy="175" r="20" fill="#999999" />
+  <circle cx="740" cy="175" r="20" fill="#999999" />
+  
+  <!-- Linebackers (Blue) -->
+  <circle cx="500" cy="70" r="25" fill="#6b9fff" stroke="black" stroke-width="3" />
+  <text x="500" y="76" fill="white" font-family="Arial" font-weight="bold" font-size="18" text-anchor="middle">MLB</text>
+  <circle cx="400" cy="70" r="25" fill="#6b9fff" stroke="black" stroke-width="3" />
+  <text x="400" y="76" fill="white" font-family="Arial" font-weight="bold" font-size="18" text-anchor="middle">OLB</text>
+  <circle cx="600" cy="70" r="25" fill="#6b9fff" stroke="black" stroke-width="3" />
+  <text x="600" y="76" fill="white" font-family="Arial" font-weight="bold" font-size="18" text-anchor="middle">OLB</text>
+  
+  <!-- Defensive Backs (Green) -->
+  <circle cx="280" cy="40" r="25" fill="#5cd65c" stroke="black" stroke-width="3" />
+  <text x="280" y="46" fill="white" font-family="Arial" font-weight="bold" font-size="18" text-anchor="middle">CB</text>
+  <circle cx="720" cy="40" r="25" fill="#5cd65c" stroke="black" stroke-width="3" />
+  <text x="720" y="46" fill="white" font-family="Arial" font-weight="bold" font-size="18" text-anchor="middle">CB</text>
+  <circle cx="450" cy="20" r="25" fill="#5cd65c" stroke="black" stroke-width="3" />
+  <text x="450" y="26" fill="white" font-family="Arial" font-weight="bold" font-size="18" text-anchor="middle">SS</text>
+  <circle cx="550" cy="20" r="25" fill="#5cd65c" stroke="black" stroke-width="3" />
+  <text x="550" y="26" fill="white" font-family="Arial" font-weight="bold" font-size="18" text-anchor="middle">FS</text>
+  
+  <!-- Legend Boxes -->
+  <rect x="190" y="310" width="180" height="40" rx="5" fill="#ff6b6b" />
+  <text x="280" y="335" fill="white" font-family="Arial" font-weight="bold" font-size="18" text-anchor="middle">DEFENSIVE LINE</text>
+  <rect x="410" y="310" width="180" height="40" rx="5" fill="#6b9fff" />
+  <text x="500" y="335" fill="white" font-family="Arial" font-weight="bold" font-size="18" text-anchor="middle">LINEBACKERS</text>
+  <rect x="630" y="310" width="180" height="40" rx="5" fill="#5cd65c" />
+  <text x="720" y="335" fill="white" font-family="Arial" font-weight="bold" font-size="18" text-anchor="middle">DEFENSIVE BACKS</text>
+  
+  <!-- Title -->
+  <rect x="0" y="370" width="1000" height="30" fill="#111d2a" />
+  <text x="500" y="390" fill="white" font-family="Arial" font-weight="bold" font-size="16" text-anchor="middle">
+    DEFENSIVE POSITIONS BASICS (11 PLAYERS ON FIELD)
+  </text>
+</svg>
+

@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    .title {
+      font-family: 'Arial Black', Gadget, sans-serif;
+    }
+    
+    .field {
+      fill: #4CAF50;
+    }
+    
+    .offense-player {
+      fill: #1a4e94;
+      stroke: white;
+      stroke-width: 2;
+    }
+    
+    .defense-player {
+      fill: #c62828;
+      stroke: white;
+      stroke-width: 2;
+    }
+    
+    .player-label {
+      font-family: 'Arial', sans-serif;
+      font-weight: bold;
+    }
+    
+    .yard-line {
+      stroke: rgba(255, 255, 255, 0.5);
+      stroke-width: 1;
+    }
+    
+    .line-of-scrimmage {
+      stroke: rgba(255, 255, 255, 0.9);
+      stroke-width: 2;
+      stroke-dasharray: 10, 5;
+    }
+    
+    .text-info {
+      font-family: 'Arial', sans-serif;
+    }
+  </style>
+
+  <!-- Background with border -->
+  <rect x="0" y="0" width="800" height="600" fill="#f4f4f4" stroke="#2e7d32" stroke-width="8"/>
+  
+  <!-- Title -->
+  <text x="400" y="50" class="title" font-size="40" text-anchor="middle" fill="#000000">PLAYERS ON THE FIELD</text>
+  
+  <!-- Football field -->
+  <rect x="100" y="100" width="600" height="350" class="field" rx="5" ry="5"/>
+  
+  <!-- Yard lines -->
+  <line x1="170" y1="100" x2="170" y2="450" class="yard-line"/>
+  <line x1="240" y1="100" x2="240" y2="450" class="yard-line"/>
+  <line x1="310" y1="100" x2="310" y2="450" class="yard-line"/>
+  <line x1="380" y1="100" x2="380" y2="450" class="yard-line"/>
+  <line x1="450" y1="100" x2="450" y2="450" class="yard-line"/>
+  <line x1="520" y1="100" x2="520" y2="450" class="yard-line"/>
+  <line x1="590" y1="100" x2="590" y2="450" class="yard-line"/>
+  <line x1="660" y1="100" x2="660" y2="450" class="yard-line"/>
+  
+  <!-- Line of scrimmage -->
+  <line x1="380" y1="100" x2="380" y2="450" class="line-of-scrimmage"/>
+  
+  <!-- Team Labels -->
+  <text x="250" y="130" class="player-label" font-size="24" text-anchor="middle" fill="#ffffff">OFFENSE: 11 PLAYERS</text>
+  <text x="550" y="130" class="player-label" font-size="24" text-anchor="middle" fill="#ffffff">DEFENSE: 11 PLAYERS</text>
+  
+  <!-- OFFENSIVE PLAYERS (BLUE) - PRO-STYLE FORMATION -->
+  <!-- Quarterback -->
+  <circle cx="340" cy="275" r="18" class="offense-player"/>
+  
+  <!-- Running Back -->
+  <circle cx="300" cy="275" r="18" class="offense-player"/>
+  
+  <!-- Offensive Line -->
+  <!-- Center -->
+  <circle cx="370" cy="275" r="18" class="offense-player"/>
+  <!-- Guards -->
+  <circle cx="370" cy="235" r="18" class="offense-player"/>
+  <circle cx="370" cy="315" r="18" class="offense-player"/>
+  <!-- Tackles -->
+  <circle cx="370" cy="195" r="18" class="offense-player"/>
+  <circle cx="370" cy="355" r="18" class="offense-player"/>
+  
+  <!-- Tight End -->
+  <circle cx="370" cy="155" r="18" class="offense-player"/>
+  
+  <!-- Wide Receivers -->
+  <circle cx="160" cy="155" r="18" class="offense-player"/>
+  <circle cx="160" cy="395" r="18" class="offense-player"/>
+  <circle cx="280" cy="395" r="18" class="offense-player"/>
+  
+  <!-- DEFENSIVE PLAYERS (RED) - 4-3 DEFENSE -->
+  <!-- 4 Defensive Linemen -->
+  <circle cx="390" cy="235" r="18" class="defense-player"/>
+  <circle cx="390" cy="275" r="18" class="defense-player"/>
+  <circle cx="390" cy="315" r="18" class="defense-player"/>
+  <circle cx="390" cy="195" r="18" class="defense-player"/>
+  
+  <!-- 3 Linebackers -->
+  <circle cx="440" cy="235" r="18" class="defense-player"/>
+  <circle cx="440" cy="275" r="18" class="defense-player"/>
+  <circle cx="440" cy="315" r="18" class="defense-player"/>
+  
+  <!-- 4 Defensive Backs -->
+  <circle cx="430" cy="155" r="18" class="defense-player"/>
+  <circle cx="430" cy="395" r="18" class="defense-player"/>
+  <circle cx="510" cy="235" r="18" class="defense-player"/>
+  <circle cx="510" cy="315" r="18" class="defense-player"/>
+  
+  <!-- Football -->
+  <ellipse cx="370" cy="275" rx="10" ry="6" fill="#8B4513" stroke="#000000" stroke-width="1" transform="rotate(30, 370, 275)"/>
+  
+  <!-- Line of Scrimmage label -->
+  <text x="400" y="475" class="player-label" font-size="24" text-anchor="middle" fill="#000000">LINE OF SCRIMMAGE</text>
+  
+  <!-- Explanatory text -->
+  <text x="400" y="510" class="text-info" font-size="24" text-anchor="middle" fill="#000000" font-weight="bold">Each team has exactly 11 players on the field</text>
+  <text x="400" y="540" class="text-info" font-size="20" text-anchor="middle" fill="#000000">Teams line up facing each other at the line of scrimmage</text>
+  <text x="400" y="570" class="text-info" font-size="20" text-anchor="middle" fill="#000000">The offense (blue) tries to advance the ball, while the defense (red) tries to stop them</text>
+</svg>

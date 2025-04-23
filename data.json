@@ -14,31 +14,37 @@
     },
     {
       "id": 3,
+      "title": "PLAYERS ON THE FIELD",
+      "content": "Each team has exactly 11 players on the field at any time. Teams line up facing each other at the line of scrimmage. The offense (blue) tries to advance the ball, while the defense (red) tries to stop them. The offensive team typically consists of a quarterback, running backs, receivers, and linemen. A common defensive arrangement is the 4-3 formation with four defensive linemen and three linebackers.",
+      "image": "/static/images/football_players.svg"
+    },
+    {
+      "id": 4,
       "title": "KEY SCORING METHODS",
       "content": "There are multiple ways to score in American football: TOUCHDOWN (6 points): When a team crosses the opponent's goal line with the ball or catches the ball in the end zone. FIELD GOAL (3 points): When a team kicks the ball through the opponent's goalposts. TWO-POINT CONVERSION (2 points): When a team successfully crosses the goal line from the 2-yard line after scoring a touchdown.",
       "image": "/static/images/scoring_methods.jpg",
       "has_custom_template": true
     },
     {
-      "id": 4,
-      "title": "NFL DEFENSIVE FORMATIONS BASICS: Positions on Defense",
-      "content": "The defense consists of three main groups: the defensive line, linebackers, and defensive backs. The defensive line typically includes defensive tackles (DT) and defensive ends (DE). Linebackers (LB) play behind the defensive line. Defensive backs include cornerbacks (CB) and safeties (S). The arrangement of these players on the field is called a defensive formation.",
-      "image": "/static/images/defensive_positions.jpg"
+        "id": 5,
+        "title": "NFL DEFENSIVE FORMATIONS BASICS: Positions on Defense",
+        "content": "The defense consists of three main groups: the defensive line, linebackers, and defensive backs. The defensive line typically includes defensive tackles (DT) and defensive ends (DE). Linebackers (LB) play behind the defensive line. Defensive backs include cornerbacks (CB) and safeties (S). The arrangement of these players on the field is called a defensive formation.",
+        "image": "/static/images/defensive_positions.svg"
     },
     {
-      "id": 5,
+      "id": 6,
       "title": "3-4 DEFENSIVE FORMATION",
       "content": "The 3-4 defense uses three defensive linemen and four linebackers. The three linemen are typically two defensive ends and one nose tackle who lines up directly across from the center. The four linebackers consist of two inside linebackers and two outside linebackers. This formation is effective against both the run and the pass, offering versatility in defensive strategies.",
       "image": "/static/images/3-4_defense.jpg"
     },
     {
-      "id": 6,
+      "id": 7,
       "title": "NICKEL DEFENSE",
       "content": "The Nickel defense replaces a linebacker with an extra defensive back (the 'nickel back'), resulting in five defensive backs on the field. This formation is typically used against passing plays, especially on third downs when the offense is likely to pass. The nickel package provides better coverage against multiple receiver sets.",
       "image": "/static/images/nickel_defense.jpg"
     },
     {
-      "id": 7,
+      "id": 8,
       "title": "DIME DEFENSE",
       "content": "The Dime defense takes the Nickel concept further by replacing another linebacker with a sixth defensive back (the 'dime back'). This formation features six defensive backs, making it even more effective against passing plays. The Dime is commonly used in obvious passing situations, such as long third downs or when the offense has multiple receivers on the field.",
       "image": "/static/images/dime_defense.jpg"
@@ -48,16 +54,16 @@
     {
       "id": 1,
       "question": "WHAT DEFENSIVE FORMATION IS THIS?",
-      "image": "/static/images/quiz_3-4.jpg",
+      "image": "/static/images/quiz_3-4.svg",
       "options": ["3-4 Defense", "4-3 Defense", "Nickel Defense", "Dime Defense"],
       "correct_answer": "3-4 Defense"
     },
     {
       "id": 2,
       "question": "WHAT DEFENSIVE FORMATION IS THIS?",
-      "image": "/static/images/quiz_nickel.jpg",
+      "image": "/static/images/quiz_4-3.svg",
       "options": ["3-4 Defense", "4-3 Defense", "Nickel Defense", "Dime Defense"],
-      "correct_answer": "Nickel Defense"
+      "correct_answer": "4-3 Defense"
     },
     {
       "id": 3,

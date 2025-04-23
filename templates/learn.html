@@ -7,28 +7,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="/static/css/style.css">
     <style>
-        .football-animation-container {
-            width: 100%;
-            height: 450px;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-            background-color: #f8f9fa;
-            transition: transform 0.3s ease;
-            margin: 0 auto;
-        }
-        
-        .football-animation-container:hover {
-            transform: scale(1.02);
-        }
-        
-        .football-animation-container object,
-        .lesson-image-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-        
+        .football-animation-container,
         .lesson-image-container {
             width: 100%;
             height: 450px;
@@ -42,9 +21,25 @@
             align-items: center;
             justify-content: center;
         }
-        
+        .football-animation-container:hover,
         .lesson-image-container:hover {
             transform: scale(1.02);
+        }
+        .football-animation-container object,
+        .lesson-image-container object {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .lesson-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .lesson-content {
+            margin-top: 2rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
         }
     </style>
 </head>
@@ -52,15 +47,48 @@
     <div class="container">
         <div class="lesson-container">
             <h1 class="text-center mb-4">{{ lesson.title }}</h1>
-            
             <div class="row">
                 <div class="col-12 text-center mb-4">
                     {% if lesson_id == 2 %}
                         <!-- SVG Animation for How It's Played -->
                         <div class="football-animation-container">
                             <object type="image/svg+xml" data="{{ url_for('static', filename='images/football_animation.svg') }}">
-                                <!-- Fallback image if SVG not supported -->
                                 <img src="{{ lesson.image }}" alt="{{ lesson.title }}" class="img-fluid">
+                            </object>
+                        </div>
+                    {% elif lesson_id == 5 %}
+                        <!-- External SVG for Defensive Positions lesson -->
+                        <div class="lesson-image-container">
+                            <object type="image/svg+xml" data="{{ url_for('static', filename='images/defensive_positions.svg') }}" class="img-fluid">
+                                <img src="{{ lesson.image }}" alt="{{ lesson.title }}" class="img-fluid">
+                            </object>
+                        </div>
+                    {% elif lesson_id == 6 %}
+                        <!-- External SVG for 3-4 Defense lesson -->
+                        <div class="lesson-image-container">
+                            <object type="image/svg+xml" data="{{ url_for('static', filename='images/3-4_defense.svg') }}" class="img-fluid">
+                                <img src="{{ lesson.image }}" alt="{{ lesson.title }}" class="img-fluid">
+                            </object>
+                        </div>
+                    {% elif lesson_id == 7 %}
+                        <!-- External SVG for Nickel Defense lesson -->
+                        <div class="lesson-image-container">
+                            <object type="image/svg+xml" data="{{ url_for('static', filename='images/nickel_defense.svg') }}" class="img-fluid">
+                                <img src="{{ lesson.image }}" alt="{{ lesson.title }}" class="img-fluid">
+                            </object>
+                        </div>
+                    {% elif lesson_id == 8 %}
+                        <!-- External SVG for Dime Defense lesson -->
+                        <div class="lesson-image-container">
+                            <object type="image/svg+xml" data="{{ url_for('static', filename='images/dime_defense.svg') }}" class="img-fluid">
+                                <img src="{{ lesson.image }}" alt="{{ lesson.title }}" class="img-fluid">
+                            </object>
+                        </div>
+                    {% elif '.svg' in lesson.image %}
+                        <!-- For other SVG images -->
+                        <div class="lesson-image-container">
+                            <object type="image/svg+xml" data="{{ lesson.image }}" class="img-fluid">
+                                <img src="{{ lesson.image|replace('.svg', '.jpg') }}" alt="{{ lesson.title }}" class="img-fluid">
                             </object>
                         </div>
                     {% else %}
@@ -70,48 +98,32 @@
                         </div>
                     {% endif %}
                 </div>
-                
                 <div class="col-12">
                     <div class="lesson-content">
                         <p>{{ lesson.content }}</p>
                     </div>
                 </div>
             </div>
-            
             <div class="navigation-buttons text-center mt-4">
-                {% if lesson_id > 1 %}
-                <a href="/learn/{{ lesson_id - 1 }}" class="btn btn-secondary">Previous</a>
-                {% endif %}
-                
-                <a href="{{ next_page }}" class="btn btn-primary">
-                    {% if 'quiz' in next_page %}Start Quiz{% else %}Next{% endif %}
-                </a>
+                {% if lesson_id > 1 %}<a href="/learn/{{ lesson_id - 1 }}" class="btn btn-secondary">Previous</a>{% endif %}
+                <a href="{{ next_page }}" class="btn btn-primary">{% if 'quiz' in next_page %}Start Quiz{% else %}Next{% endif %}</a>
             </div>
-            
             <div class="progress mt-4">
-                <div class="progress-bar" role="progressbar" 
-                     style="width: {{ (lesson_id / 6) * 100 }}%;" 
-                     aria-valuenow="{{ lesson_id }}" aria-valuemin="0" aria-valuemax="6">
-                    Lesson {{ lesson_id }} of 6
+                <div class="progress-bar" role="progressbar" style="width: {{ (lesson_id / 8) * 100 }}%;" aria-valuenow="{{ lesson_id }}" aria-valuemin="0" aria-valuemax="8">
+                    Lesson {{ lesson_id }} of 8
                 </div>
             </div>
         </div>
     </div>
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/static/js/main.js"></script>
     <script>
         $(document).ready(function() {
-            // Simple GET request that should work without syntax errors
-            $.ajax({
-                url: '/api/user_data',
-                type: 'GET',
-                success: function(data) {
-                    console.log('Viewing lesson ' + {{ lesson_id }});
-                }
-            });
+            $.ajax({ url: '/api/user_data', type: 'GET', success: function(data) { console.log('Viewing lesson ' + {{ lesson_id }}); } });
         });
     </script>
 </body>
 </html>
+
+
