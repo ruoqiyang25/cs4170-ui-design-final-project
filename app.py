@@ -42,38 +42,62 @@ def learn(lesson_id):
     # Default template for other lessons
     return render_template('learn.html', lesson=lesson, lesson_id=lesson_id, next_page=next_page)
 
-@app.route('/quiz/<int:question_id>', methods=['GET', 'POST'])
+@app.route('/quiz/<int:question_id>', methods=['GET'])
 def quiz(question_id):
+    # Validate question_id
     if question_id < 1 or question_id > len(content_data['quiz']):
         return redirect(url_for('learn', lesson_id=1))
     
-    user_data = session.get('user_data', {})
-
-    if request.method == 'POST':
-        selected_answer = request.form.get('answer')
-        user_data['quiz_answers'][str(question_id)] = selected_answer
-        session['user_data'] = user_data
-        
-        if question_id == len(content_data['quiz']):
-            correct_count = 0
-            for i, question in enumerate(content_data['quiz']):
-                question_num = str(i + 1)
-                user_answer = user_data['quiz_answers'].get(question_num, '')
-                if user_answer == question['correct_answer']:
-                    correct_count += 1
-            
-            score = correct_count / len(content_data['quiz']) * 100
-            user_data['quiz_score'] = score
-            session['user_data'] = user_data
-            
-            return redirect(url_for('congratulations'))
-        else:
-            return redirect(url_for('quiz', question_id=question_id + 1))
-    
+    # Get question content
     question = content_data['quiz'][question_id - 1]
     
     return render_template('quiz.html', question=question, question_id=question_id, 
                           total_questions=len(content_data['quiz']))
+
+# New API endpoint to check answers
+@app.route('/api/check_answer', methods=['POST'])
+def check_answer():
+    question_id = int(request.form.get('question_id', 0))
+    selected_answer = request.form.get('answer', '')
+    
+    # Validate question_id
+    if question_id < 1 or question_id > len(content_data['quiz']):
+        return jsonify({'error': 'Invalid question ID'}), 400
+    
+    # Get question data
+    question = content_data['quiz'][question_id - 1]
+    correct_answer = question['correct_answer']
+    
+    # Check if answer is correct
+    is_correct = selected_answer == correct_answer
+    
+    # Store answer in session
+    user_data = session.get('user_data', {})
+    if 'quiz_answers' not in user_data:
+        user_data['quiz_answers'] = {}
+    
+    user_data['quiz_answers'][str(question_id)] = selected_answer
+    session['user_data'] = user_data
+    
+    # Calculate and update score if this is the last question
+    if question_id == len(content_data['quiz']):
+        correct_count = 0
+        for i, q in enumerate(content_data['quiz']):
+            q_num = str(i + 1)
+            user_answer = user_data['quiz_answers'].get(q_num, '')
+            if user_answer == q['correct_answer']:
+                correct_count += 1
+        
+        score = correct_count / len(content_data['quiz']) * 100
+        user_data['quiz_score'] = score
+        session['user_data'] = user_data
+    
+    # Return response
+    return jsonify({
+        'is_correct': is_correct,
+        'correct_answer': correct_answer,
+        'question_id': question_id
+    })
 
 @app.route('/quiz/results')
 def quiz_results():

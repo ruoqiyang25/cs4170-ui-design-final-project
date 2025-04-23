@@ -8,40 +8,45 @@
     <link rel="stylesheet" href="/static/css/style.css">
 </head>
 <body>
+    <!-- Include the navbar -->
+    {% include 'navbar.html' %}
+    
     <div class="container">
         <div class="quiz-container">
             <h1 class="text-center mb-4">{{ question.question }}</h1>
             
             <div class="quiz-image text-center mb-4">
-                {% if question.image.endswith('.svg') %}
-                    <object type="image/svg+xml" data="{{ question.image }}" class="img-fluid" aria-label="Quiz question">
-                        <!-- Fallback PNG if SVG unsupported -->
-                        <img src="{{ question.image[:-4] }}.png" alt="Quiz question" class="img-fluid">
-                    </object>
-                {% elif question.image.endswith('.gif') %}
-                    <!-- Load GIF via <img> to ensure animation -->
-                    <img src="{{ question.image }}" alt="Quiz question" class="img-fluid" />
-                {% else %}
-                    <img src="{{ question.image }}" alt="Quiz question" class="img-fluid">
-                {% endif %}
+                <img src="{{ question.image }}" alt="Quiz question" class="img-fluid">
             </div>
             
-            <form method="POST" action="/quiz/{{ question_id }}">
+            <form id="quiz-form" data-question-id="{{ question_id }}" data-total-questions="{{ total_questions }}">
                 <div class="options-container">
                     {% for option in question.options %}
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="radio" name="answer" id="option{{ loop.index }}" value="{{ option }}" required>
-                            <label class="form-check-label" for="option{{ loop.index }}">
-                                {{ option }}
-                            </label>
-                        </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="radio" name="answer" id="option{{ loop.index }}" value="{{ option }}" required>
+                        <label class="form-check-label" for="option{{ loop.index }}">
+                            {{ option }}
+                        </label>
+                    </div>
                     {% endfor %}
                 </div>
                 
                 <div class="text-center mt-4">
-                    <button type="submit" class="btn btn-primary">Submit Answer</button>
+                    <button type="submit" class="btn btn-primary" id="submit-answer">Submit Answer</button>
                 </div>
             </form>
+            
+            <!-- Feedback section (initially hidden) -->
+            <div class="feedback-container mt-4" style="display: none;">
+                <div class="alert feedback-alert" role="alert">
+                    <h4 class="feedback-heading"></h4>
+                    <p class="feedback-message"></p>
+                    <div class="correct-answer mt-2"></div>
+                </div>
+                <div class="text-center mt-3">
+                    <button id="continue-btn" class="btn btn-success">Continue</button>
+                </div>
+            </div>
             
             <div class="progress mt-4">
                 <div class="progress-bar" role="progressbar" 
@@ -56,7 +61,79 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="/static/js/main.js"></script>
+    <script>
+        $(document).ready(function() {
+            // Handle form submission
+            $("#quiz-form").on("submit", function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const questionId = $(this).data("question-id");
+                const totalQuestions = $(this).data("total-questions");
+                const selectedAnswer = $('input[name="answer"]:checked').val();
+                
+                if (!selectedAnswer) {
+                    alert("Please select an answer before continuing.");
+                    return;
+                }
+                
+                // Disable form inputs and submit button
+                $('input[name="answer"]').prop('disabled', true);
+                $('#submit-answer').prop('disabled', true);
+                
+                // Send AJAX request
+                $.ajax({
+                    url: "/api/check_answer",
+                    type: "POST",
+                    data: {
+                        question_id: questionId,
+                        answer: selectedAnswer
+                    },
+                    success: function(response) {
+                        // Show feedback
+                        const feedbackContainer = $(".feedback-container");
+                        const feedbackAlert = $(".feedback-alert");
+                        const feedbackHeading = $(".feedback-heading");
+                        const feedbackMessage = $(".feedback-message");
+                        const correctAnswer = $(".correct-answer");
+                        
+                        // Set feedback content based on response
+                        if (response.is_correct) {
+                            feedbackAlert.removeClass("alert-danger").addClass("alert-success");
+                            feedbackHeading.text("Correct!");
+                            feedbackMessage.text("Great job! Your answer is correct.");
+                        } else {
+                            feedbackAlert.removeClass("alert-success").addClass("alert-danger");
+                            feedbackHeading.text("Incorrect");
+                            feedbackMessage.text("That's not the right answer.");
+                        }
+                        
+                        // Show correct answer
+                        correctAnswer.html(`<strong>Correct answer:</strong> ${response.correct_answer}`);
+                        
+                        // Show feedback container with animation
+                        feedbackContainer.slideDown(300);
+                        
+                        // Set up continue button
+                        $("#continue-btn").on("click", function() {
+                            // If last question, go to congratulations page
+                            if (questionId === totalQuestions) {
+                                window.location.href = "/congratulations";
+                            } else {
+                                // Otherwise go to next question
+                                window.location.href = `/quiz/${questionId + 1}`;
+                            }
+                        });
+                    },
+                    error: function() {
+                        alert("There was an error checking your answer. Please try again.");
+                        // Re-enable form
+                        $('input[name="answer"]').prop('disabled', false);
+                        $('#submit-answer').prop('disabled', false);
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
-
-
