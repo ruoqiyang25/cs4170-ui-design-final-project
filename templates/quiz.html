@@ -14,24 +14,27 @@
             
             <div class="quiz-image text-center mb-4">
                 {% if question.image.endswith('.svg') %}
-                <object type="image/svg+xml" data="{{ question.image }}" class="img-fluid" aria-label="Quiz question">
-                    <!-- Fallback PNG if SVG unsupported -->
-                    <img src="{{ question.image[:-4] }}.png" alt="Quiz question" class="img-fluid">
-                </object>
+                    <object type="image/svg+xml" data="{{ question.image }}" class="img-fluid" aria-label="Quiz question">
+                        <!-- Fallback PNG if SVG unsupported -->
+                        <img src="{{ question.image[:-4] }}.png" alt="Quiz question" class="img-fluid">
+                    </object>
+                {% elif question.image.endswith('.gif') %}
+                    <!-- Load GIF via <img> to ensure animation -->
+                    <img src="{{ question.image }}" alt="Quiz question" class="img-fluid" />
                 {% else %}
-                <img src="{{ question.image }}" alt="Quiz question" class="img-fluid">
+                    <img src="{{ question.image }}" alt="Quiz question" class="img-fluid">
                 {% endif %}
             </div>
             
             <form method="POST" action="/quiz/{{ question_id }}">
                 <div class="options-container">
                     {% for option in question.options %}
-                    <div class="form-check mb-3">
-                        <input class="form-check-input" type="radio" name="answer" id="option{{ loop.index }}" value="{{ option }}" required>
-                        <label class="form-check-label" for="option{{ loop.index }}">
-                            {{ option }}
-                        </label>
-                    </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="radio" name="answer" id="option{{ loop.index }}" value="{{ option }}" required>
+                            <label class="form-check-label" for="option{{ loop.index }}">
+                                {{ option }}
+                            </label>
+                        </div>
                     {% endfor %}
                 </div>
                 
@@ -55,4 +58,5 @@
     <script src="/static/js/main.js"></script>
 </body>
 </html>
+
 

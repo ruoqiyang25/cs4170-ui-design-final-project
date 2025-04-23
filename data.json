@@ -26,10 +26,10 @@
       "has_custom_template": true
     },
     {
-        "id": 5,
-        "title": "NFL DEFENSIVE FORMATIONS BASICS: Positions on Defense",
-        "content": "The defense consists of three main groups: the defensive line, linebackers, and defensive backs. The defensive line typically includes defensive tackles (DT) and defensive ends (DE). Linebackers (LB) play behind the defensive line. Defensive backs include cornerbacks (CB) and safeties (S). The arrangement of these players on the field is called a defensive formation.",
-        "image": "/static/images/defensive_positions.svg"
+      "id": 5,
+      "title": "NFL DEFENSIVE FORMATIONS BASICS: Positions on Defense",
+      "content": "The defense consists of three main groups: the defensive line, linebackers, and defensive backs. The defensive line typically includes defensive tackles (DT) and defensive ends (DE). Linebackers (LB) play behind the defensive line. Defensive backs include cornerbacks (CB) and safeties (S). The arrangement of these players on the field is called a defensive formation.",
+      "image": "/static/images/defensive_positions.svg"
     },
     {
       "id": 6,
@@ -41,13 +41,13 @@
       "id": 7,
       "title": "NICKEL DEFENSE",
       "content": "The Nickel defense replaces a linebacker with an extra defensive back (the 'nickel back'), resulting in five defensive backs on the field. This formation is typically used against passing plays, especially on third downs when the offense is likely to pass. The nickel package provides better coverage against multiple receiver sets.",
-      "image": "/static/images/nickel_defense.jpg"
+      "image": "/static/images/nickel_defense.svg"
     },
     {
       "id": 8,
       "title": "DIME DEFENSE",
       "content": "The Dime defense takes the Nickel concept further by replacing another linebacker with a sixth defensive back (the 'dime back'). This formation features six defensive backs, making it even more effective against passing plays. The Dime is commonly used in obvious passing situations, such as long third downs or when the offense has multiple receivers on the field.",
-      "image": "/static/images/dime_defense.jpg"
+      "image": "/static/images/dime_defense.svg"
     }
   ],
   "quiz": [
@@ -68,25 +68,19 @@
     {
       "id": 3,
       "question": "WHAT DEFENSIVE FORMATION IS THIS?",
-      "image": "/static/images/quiz_dime.jpg",
+      "image": "/static/images/nickel_defense.gif",
       "options": ["3-4 Defense", "4-3 Defense", "Nickel Defense", "Dime Defense"],
-      "correct_answer": "Dime Defense"
+      "correct_answer": "Nickel Defense"
     },
     {
       "id": 4,
       "question": "WHAT DEFENSIVE FORMATION IS THIS?",
-      "image": "/static/images/quiz_4-3.jpg",
+      "image": "/static/images/dime_defense.gif",
       "options": ["3-4 Defense", "4-3 Defense", "Nickel Defense", "Dime Defense"],
-      "correct_answer": "4-3 Defense"
-    },
-    {
-      "id": 5,
-      "question": "WHAT DEFENSIVE FORMATION IS THIS?",
-      "image": "/static/images/quiz_goal_line.jpg",
-      "options": ["3-4 Defense", "4-3 Defense", "Goal Line Defense", "Prevent Defense"],
-      "correct_answer": "Goal Line Defense"
+      "correct_answer": "Dime Defense"
     }
   ]
 }
+
 
   
