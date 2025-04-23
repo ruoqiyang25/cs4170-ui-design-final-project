@@ -78,9 +78,17 @@
       "image": "/static/images/dime_defense.gif",
       "options": ["3-4 Defense", "4-3 Defense", "Nickel Defense", "Dime Defense"],
       "correct_answer": "Dime Defense"
+    },
+    {
+      "id": 5,
+      "question": "WHAT DEFENSIVE FORMATION IS THIS?",
+      "image": "/static/images/49ers_nickel.gif",
+      "options": ["3-4 Defense", "4-3 Defense", "Nickel Defense", "Dime Defense"],
+      "correct_answer": "Nickel Defense"
     }
   ]
 }
+
 
 
   
