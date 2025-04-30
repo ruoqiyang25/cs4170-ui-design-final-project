@@ -1,9 +1,47 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
 /* Global Styles */
 body {
-  font-family: "Arial", sans-serif;
+  font-family: "Open Sans", Arial, sans-serif;
   background-color: #f8f9fa;
   color: #333;
-  padding-top: 70px; /* Add padding to account for fixed navbar */
+  padding-top: 70px;
+}
+
+h1, h2, h3, h4, h5, h6, .navbar-brand, .btn {
+  font-family: "Bebas Neue", sans-serif;
+}
+
+/* Make Bebas Neue bigger for different heading levels */
+h1 {
+  font-size: 3.5rem; /* Much bigger for main headings */
+  letter-spacing: 1px; /* Improves readability for Bebas Neue */
+}
+
+h2 {
+  font-size: 2.8rem;
+  letter-spacing: 0.8px;
+}
+
+h3 {
+  font-size: 2.2rem;
+  letter-spacing: 0.6px;
+}
+
+h4 {
+  font-size: 1.8rem;
+  letter-spacing: 0.5px;
+}
+
+.navbar-brand {
+  font-family: "Bebas Neue", sans-serif;
+  /* No font-size override here - will use the original size */
+}
+
+/* Make buttons more prominent */
+.btn {
+  font-size: 1.2rem;
+  letter-spacing: 0.5px;
 }
 
 .container {
