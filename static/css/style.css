@@ -1,9 +1,25 @@
 /* Global Styles */
 body {
   font-family: "Arial", sans-serif;
-  background-color: #f8f9fa;
   color: #333;
   padding-top: 70px; /* Add padding to account for fixed navbar */
+  background-image: url("/static/images/football_field_bg.jpg");
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: center;
+  position: relative;
+}
+
+/* Background overlay to ensure content readability */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.85); /* Semi-transparent white overlay */
+  z-index: -1;
 }
 
 .container {
@@ -56,10 +72,11 @@ body {
 /* Home Page */
 .home-container {
   padding: 50px 20px;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   margin-top: 30px;
+  backdrop-filter: blur(5px);
 }
 
 .nfl-logo-container {
@@ -93,25 +110,26 @@ body {
   padding: 15px 40px;
   font-size: 1.2rem;
   font-weight: bold;
-  background-color: #004d98; /* NFL blue */
-  border-color: #004d98;
+  background-color: #013369; /* NFL blue - matching navbar */
+  border-color: #013369;
   transition: all 0.3s ease;
 }
 
 .start-btn:hover {
-  background-color: #00347a;
-  border-color: #00347a;
+  background-color: #002350; /* Darker shade for hover */
+  border-color: #002350;
   transform: translateY(-2px);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 /* Lesson Page */
 .lesson-container {
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   padding: 30px;
   margin-top: 30px;
+  backdrop-filter: blur(5px);
 }
 
 .lesson-content {
@@ -137,11 +155,12 @@ body {
 
 /* Quiz Page */
 .quiz-container {
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   padding: 30px;
   margin-top: 30px;
+  backdrop-filter: blur(5px);
 }
 
 .quiz-image img {
@@ -162,10 +181,11 @@ body {
   border-radius: 8px;
   margin-bottom: 15px;
   transition: all 0.3s ease;
+  background-color: rgba(255, 255, 255, 0.8);
 }
 
 .form-check:hover {
-  background-color: #f8f9fa;
+  background-color: rgba(248, 249, 250, 0.9);
   border-color: #004d98;
 }
 
@@ -200,7 +220,7 @@ body {
 .correct-answer {
   font-size: 1.1rem;
   padding: 10px;
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.7);
   border-radius: 5px;
 }
 
@@ -217,16 +237,17 @@ body {
 
 /* Results Page */
 .results-container {
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   padding: 30px;
   margin-top: 30px;
+  backdrop-filter: blur(5px);
 }
 
 .score-container {
   padding: 20px;
-  background-color: #f8f9fa;
+  background-color: rgba(248, 249, 250, 0.8);
   border-radius: 8px;
 }
 
@@ -249,23 +270,24 @@ body {
 }
 
 .progress-bar {
-  background-color: #004d98;
+  background-color: #013369; /* Matching navbar color */
   font-weight: bold;
 }
 
 /* Congratulations Page */
 .congrats-container {
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.9);
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
   padding: 50px 30px;
   margin-top: 30px;
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(5px);
 }
 
 .score-card {
-  background-color: #f8f9fa;
+  background-color: rgba(248, 249, 250, 0.8);
   border-radius: 10px;
   padding: 30px;
   max-width: 500px;
@@ -396,6 +418,27 @@ body {
   }
 }
 
+/* Background switcher */
+.bg-switcher {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  z-index: 999;
+  background-color: rgba(255, 255, 255, 0.8);
+  border-radius: 50px;
+  padding: 5px 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.bg-switcher select {
+  border: none;
+  background: transparent;
+  padding: 5px;
+  font-size: 0.9rem;
+  color: #013369;
+  font-weight: bold;
+}
+
 /* Responsive adjustments */
 @media (max-width: 768px) {
   .navbar-brand span {
@@ -422,4 +465,35 @@ body {
   .score-display {
     font-size: 2.5rem;
   }
+
+  .bg-switcher {
+    bottom: 10px;
+    right: 10px;
+    padding: 3px 10px;
+  }
+}
+
+/* Also update the btn-primary class to match the navbar color */
+.btn-primary {
+  background-color: #013369;
+  border-color: #013369;
+}
+
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: #002350 !important;
+  border-color: #002350 !important;
+}
+
+.navigation-buttons .btn-primary {
+  background-color: #c8102e; /* NFL red */
+  border-color: #c8102e;
+}
+
+.navigation-buttons .btn-primary:hover,
+.navigation-buttons .btn-primary:focus,
+.navigation-buttons .btn-primary:active {
+  background-color: #a50d26 !important; /* Darker red for hover */
+  border-color: #a50d26 !important;
 }

@@ -1,139 +1,170 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz | NFL Defensive Formations</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/static/css/style.css">
-</head>
-<body>
-    <!-- Include the navbar -->
-    {% include 'navbar.html' %}
-    
-    <div class="container">
-        <div class="quiz-container">
-            <h1 class="text-center mb-4">{{ question.question }}</h1>
-            
-            <div class="quiz-image text-center mb-4">
-                <img src="{{ question.image }}" alt="Quiz question" class="img-fluid">
+{% extends 'base.html' %}
+
+{% block title %}Quiz | NFL Defensive Formations{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="quiz-container">
+        <h1 class="text-center mb-4">{{ question.question }}</h1>
+        
+        <div class="quiz-image text-center mb-4">
+            <img src="{{ question.image }}" alt="Quiz question" class="img-fluid">
+        </div>
+        
+        <div id="quiz-options" data-question-id="{{ question_id }}" data-total-questions="{{ total_questions }}">
+            <div class="options-container">
+                {% for option in question.options %}
+                <div class="form-check mb-3 answer-option" data-value="{{ option }}">
+                    <input class="form-check-input" type="radio" name="answer" id="option{{ loop.index }}" value="{{ option }}">
+                    <label class="form-check-label" for="option{{ loop.index }}">
+                        {{ option }}
+                    </label>
+                </div>
+                {% endfor %}
             </div>
-            
-            <form id="quiz-form" data-question-id="{{ question_id }}" data-total-questions="{{ total_questions }}">
-                <div class="options-container">
-                    {% for option in question.options %}
-                    <div class="form-check mb-3">
-                        <input class="form-check-input" type="radio" name="answer" id="option{{ loop.index }}" value="{{ option }}" required>
-                        <label class="form-check-label" for="option{{ loop.index }}">
-                            {{ option }}
-                        </label>
-                    </div>
-                    {% endfor %}
-                </div>
-                
-                <div class="text-center mt-4">
-                    <button type="submit" class="btn btn-primary" id="submit-answer">Submit Answer</button>
-                </div>
-            </form>
-            
-            <!-- Feedback section (initially hidden) -->
-            <div class="feedback-container mt-4" style="display: none;">
-                <div class="alert feedback-alert" role="alert">
-                    <h4 class="feedback-heading"></h4>
-                    <p class="feedback-message"></p>
-                    <div class="correct-answer mt-2"></div>
-                </div>
-                <div class="text-center mt-3">
-                    <button id="continue-btn" class="btn btn-success">Continue</button>
-                </div>
+        </div>
+        
+        <!-- Feedback section (initially hidden) -->
+        <div class="feedback-container mt-4" style="display: none;">
+            <div class="alert feedback-alert" role="alert">
+                <h4 class="feedback-heading"></h4>
+                <p class="feedback-message"></p>
+                <div class="correct-answer mt-2"></div>
             </div>
-            
-            <div class="progress mt-4">
-                <div class="progress-bar" role="progressbar" 
-                     style="width: {{ (question_id / total_questions) * 100 }}%;" 
-                     aria-valuenow="{{ question_id }}" aria-valuemin="0" aria-valuemax="{{ total_questions }}">
-                    Question {{ question_id }} of {{ total_questions }}
-                </div>
+            <div class="text-center mt-3">
+                <button id="continue-btn" class="btn btn-success">Continue</button>
+            </div>
+        </div>
+        
+        <div class="progress mt-4">
+            <div class="progress-bar" role="progressbar" 
+                 style="width: {{ (question_id / total_questions) * 100 }}%;" 
+                 aria-valuenow="{{ question_id }}" aria-valuemin="0" aria-valuemax="{{ total_questions }}">
+                Question {{ question_id }} of {{ total_questions }}
             </div>
         </div>
     </div>
+</div>
+{% endblock %}
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="/static/js/main.js"></script>
-    <script>
-        $(document).ready(function() {
-            // Handle form submission
-            $("#quiz-form").on("submit", function(e) {
-                e.preventDefault();
-                
-                // Get form data
-                const questionId = $(this).data("question-id");
-                const totalQuestions = $(this).data("total-questions");
-                const selectedAnswer = $('input[name="answer"]:checked').val();
-                
-                if (!selectedAnswer) {
-                    alert("Please select an answer before continuing.");
-                    return;
-                }
-                
-                // Disable form inputs and submit button
-                $('input[name="answer"]').prop('disabled', true);
-                $('#submit-answer').prop('disabled', true);
-                
-                // Send AJAX request
-                $.ajax({
-                    url: "/api/check_answer",
-                    type: "POST",
-                    data: {
-                        question_id: questionId,
-                        answer: selectedAnswer
-                    },
-                    success: function(response) {
-                        // Show feedback
-                        const feedbackContainer = $(".feedback-container");
-                        const feedbackAlert = $(".feedback-alert");
-                        const feedbackHeading = $(".feedback-heading");
-                        const feedbackMessage = $(".feedback-message");
-                        const correctAnswer = $(".correct-answer");
+{% block extra_js %}
+<script>
+    $(document).ready(function() {
+        // Handle answer option click
+        $(".answer-option").on("click", function() {
+            // If feedback is already shown, prevent further selections
+            if ($(".feedback-container").is(":visible")) {
+                return false;
+            }
+            
+            // Get the selected answer and check the radio button
+            const selectedOption = $(this);
+            const selectedAnswer = selectedOption.data("value");
+            selectedOption.find('input[type="radio"]').prop('checked', true);
+            
+            // Get question data
+            const questionId = $("#quiz-options").data("question-id");
+            const totalQuestions = $("#quiz-options").data("total-questions");
+            
+            // Disable all options to prevent further selection
+            $(".answer-option").addClass("disabled");
+            $(".answer-option input").prop("disabled", true);
+            
+            // Add visual indication to the selected option
+            selectedOption.addClass("selected-option");
+            
+            // Send AJAX request
+            $.ajax({
+                url: "/api/check_answer",
+                type: "POST",
+                data: {
+                    question_id: questionId,
+                    answer: selectedAnswer
+                },
+                success: function(response) {
+                    // Show feedback
+                    const feedbackContainer = $(".feedback-container");
+                    const feedbackAlert = $(".feedback-alert");
+                    const feedbackHeading = $(".feedback-heading");
+                    const feedbackMessage = $(".feedback-message");
+                    const correctAnswer = $(".correct-answer");
+                    
+                    // Set feedback content based on response
+                    if (response.is_correct) {
+                        feedbackAlert.removeClass("alert-danger").addClass("alert-success");
+                        feedbackHeading.text("Correct!");
+                        feedbackMessage.text("Great job! Your answer is correct.");
+                        selectedOption.addClass("correct-option");
+                    } else {
+                        feedbackAlert.removeClass("alert-success").addClass("alert-danger");
+                        feedbackHeading.text("Incorrect");
+                        feedbackMessage.text("That's not the right answer.");
+                        selectedOption.addClass("incorrect-option");
                         
-                        // Set feedback content based on response
-                        if (response.is_correct) {
-                            feedbackAlert.removeClass("alert-danger").addClass("alert-success");
-                            feedbackHeading.text("Correct!");
-                            feedbackMessage.text("Great job! Your answer is correct.");
-                        } else {
-                            feedbackAlert.removeClass("alert-success").addClass("alert-danger");
-                            feedbackHeading.text("Incorrect");
-                            feedbackMessage.text("That's not the right answer.");
-                        }
-                        
-                        // Show correct answer
-                        correctAnswer.html(`<strong>Correct answer:</strong> ${response.correct_answer}`);
-                        
-                        // Show feedback container with animation
-                        feedbackContainer.slideDown(300);
-                        
-                        // Set up continue button
-                        $("#continue-btn").on("click", function() {
-                            // If last question, go to congratulations page
-                            if (questionId === totalQuestions) {
-                                window.location.href = "/congratulations";
-                            } else {
-                                // Otherwise go to next question
-                                window.location.href = `/quiz/${questionId + 1}`;
-                            }
-                        });
-                    },
-                    error: function() {
-                        alert("There was an error checking your answer. Please try again.");
-                        // Re-enable form
-                        $('input[name="answer"]').prop('disabled', false);
-                        $('#submit-answer').prop('disabled', false);
+                        // Highlight the correct answer
+                        $(`.answer-option[data-value="${response.correct_answer}"]`).addClass("correct-option");
                     }
-                });
+                    
+                    // Show correct answer in the feedback
+                    correctAnswer.html(`<strong>Correct answer:</strong> ${response.correct_answer}`);
+                    
+                    // Show feedback container with animation
+                    feedbackContainer.slideDown(300);
+                    
+                    // Set up continue button
+                    $("#continue-btn").on("click", function() {
+                        // If last question, go to congratulations page
+                        if (questionId === totalQuestions) {
+                            window.location.href = "/congratulations";
+                        } else {
+                            // Otherwise go to next question
+                            window.location.href = `/quiz/${questionId + 1}`;
+                        }
+                    });
+                },
+                error: function() {
+                    alert("There was an error checking your answer. Please try again.");
+                    // Re-enable options in case of error
+                    $(".answer-option").removeClass("disabled");
+                    $(".answer-option input").prop("disabled", false);
+                    selectedOption.removeClass("selected-option");
+                }
             });
         });
-    </script>
-</body>
-</html>
+    });
+</script>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    /* Additional styles for the quiz options */
+    .answer-option {
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .answer-option:hover {
+        background-color: rgba(1, 51, 105, 0.05);
+        transform: translateY(-2px);
+    }
+    
+    .answer-option.disabled {
+        cursor: not-allowed;
+        opacity: 0.7;
+    }
+    
+    .answer-option.selected-option {
+        border-width: 2px;
+    }
+    
+    .answer-option.correct-option {
+        background-color: rgba(25, 135, 84, 0.2);
+        border-color: #198754;
+    }
+    
+    .answer-option.incorrect-option {
+        background-color: rgba(220, 53, 69, 0.2);
+        border-color: #dc3545;
+    }
+</style>
+{% endblock %}

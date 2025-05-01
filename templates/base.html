@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}NFL Defensive Formations{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/style.css">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Include the navbar -->
+    {% include 'navbar.html' %}
+    
+    {% block content %}{% endblock %}
+    
+    <!-- Background switcher -->
+    <div class="bg-switcher">
+        <select id="bg-select">
+            <option value="football_field_bg.jpg">Football Field</option>
+            <option value="stadium_bg.jpg">Stadium</option>
+            <option value="none">No Background</option>
+        </select>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/static/js/main.js"></script>
+    
+    <script>
+        $(document).ready(function() {
+            // Background switcher functionality
+            $('#bg-select').on('change', function() {
+                const bgValue = $(this).val();
+                
+                if (bgValue === 'none') {
+                    $('body').css({
+                        'background-image': 'none',
+                        'background-color': '#f8f9fa'
+                    });
+                } else {
+                    $('body').css({
+                        'background-image': `url('/static/images/${bgValue}')`,
+                        'background-color': 'transparent'
+                    });
+                }
+                
+                // Save preference to localStorage
+                localStorage.setItem('nfl-bg-preference', bgValue);
+            });
+            
+            // Load saved preference if exists
+            const savedBg = localStorage.getItem('nfl-bg-preference');
+            if (savedBg) {
+                $('#bg-select').val(savedBg).trigger('change');
+            }
+        });
+    </script>
+    
+    {% block extra_js %}{% endblock %}
+</body>
+</html>
