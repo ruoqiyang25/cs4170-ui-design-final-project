@@ -35,3 +35,8 @@ This project is an interactive web application designed for CS4170: User Interfa
    ```bash
    git clone https://github.com/ruoqiyang25/cs4170-ui-design-final-project.git
    cd cs4170-ui-design-final-project
+2. Open terminal:
+    Run the following command: python3 app.py localhost
+    copy "http://127.0.0.1:5000" from terminal
+3. Open browser:
+    Paste "http://127.0.0.1:5000" in the search bar
